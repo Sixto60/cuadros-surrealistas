@@ -1,13 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuadros Surrealistas</title>
+    <title>Ecos Oníricos | Galería de Arte Surrealista</title>
+    <!-- Enlace al archivo CSS externo -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts para una tipografía mística y elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Cuadros Surrealistas</h1>
-    
+
+    <!-- FONDO ANIMADO DE PARTÍCULAS / ESFERAS SURREALISTAS -->
+    <div class="surreal-bg">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/5490000000000?text=Hola,%20estoy%20interesado%20en%20adquirir%20una%20de%20sus%20obras%20surrealistas." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <span class="whatsapp-tooltip">¡Consúltanos por WhatsApp!</span>
+    </a>
+
+    <!-- CABECERA / NAVEGACIÓN -->
+    <header class="header">
+        <div class="logo">Ecos Oníricos</div>
+        <nav class="nav-links">
+            <a href="#galeria">Galería</a>
+            <a href="#manifiesto">Manifiesto</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Más allá de la lógica visible</span>
+            <h1 class="hero-title">El Arte de Habitar <br>los Sueños Ajenos</h1>
+            <p class="hero-text">Ventanas abiertas hacia dimensiones donde el tiempo se fragmenta, la gravedad es opcional y la imaginación no conoce leyes físicas.</p>
+            <div class="hero-buttons">
+                <a href="#galeria" class="btn btn-primary">Explorar Exposición</a>
+                <a href="https://wa.me/5490000000000?text=Hola,%20deseo%20adquirir%20una%20obra%20original." class="btn btn-secondary" target="_blank" rel="noopener">Adquirir Obra</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="surreal-frame-hero">
+                <div class="inner-art art-1"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE GALERÍA DE CUADROS SURREALISTAS -->
+    <section id="galeria" class="gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">Colección Dimensional</h2>
+            <p class="section-desc">Pinturas al óleo y técnica mixta originales de edición única y certificada.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Cuadro 1 -->
+            <article class="art-card">
+                <div class="card-image-wrapper">
+                    <div class="art-img img-1"></div>
+                    <div class="art-overlay">
+                        <a href="https://wa.me/5490000000000?text=Hola,%20estoy%20interesado%20en%20la%20obra:%20Relojes%20de%20Ajedrez" class="overlay-btn" target="_blank">Consultar por WhatsApp</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>El Peso del Tiempo Líquido</h3>
+                    <p class="art-specs">Óleo sobre lienzo • 120 x 90 cm</p>
+                    <span class="art-price">Disponible</span>
+                </div>
+            </article>
+
+            <!-- Cuadro 2 -->
+            <article class="art-card">
+                <div class="card-image-wrapper">
+                    <div class="art-img img-2"></div>
+                    <img src="https://wa.me/5490000000000?text=Hola,%20estoy%20interesado%20en%20la%20obra:%20Arquitectura%20Onírica" alt="Arquitectura de un Olvido" class="art-img img-2">
+                    <div class="art-overlay">
+                        <a href="https://wa.me/5490000000000?text=Hola,%20estoy%20interesado%20en%20la%20obra:%20Arquitectura%20Onírica" class="overlay-btn" target="_blank">Consultar por WhatsApp</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Arquitectura de un Olvido</h3>
+                    <p class="art-specs">Acrílico y texturas • 100 x 100 cm</p>
+                    <span class="art-price">Disponible</span>
+                </div>
+            </article>
+
+            <!-- Cuadro 3 -->
+            <article class="art-card">
+                <div class="card-image-wrapper">
+                    <div class="art-img img-3"></div>
+                    <div class="art-overlay">
+                        <a href="https://lienzos.art/storage/products/metamorfosis-astral-656842643416f.webp" class="overlay-btn" target="_blank">Consultar por WhatsApp</a>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Metamorfosis Astral</h3>
+                    <p class="art-specs">Técnica mixta • 150 x 110 cm</p>
+                    <span class="art-price">Reservado</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SECCIÓN MANIFIESTO -->
+    <section id="manifiesto" class="manifesto-section">
+        <div class="manifesto-container">
+            <h2 class="manifesto-title">Manifiesto Surreal</h2>
+            <blockquote class="manifesto-quote">
+                "El cuadro no se pinta para ser mirado con los ojos de la vigilia, sino con los ojos del alma que duerme despierta."
+            </blockquote>
+            <p class="manifesto-text">Cada pieza de nuestra galería es una ventana independiente a mundos alternativos. No vendemos meras decoraciones para paredes; entregamos portales físicos creados artesanalmente para transformar la atmósfera de tus espacios cotidianos en santuarios de misterio y reflexión.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO DIRECTO -->
+    <section id="contacto" class="contact-section">
+        <div class="contact-box">
+            <h2>¿Listo para poseer un fragmento del inconsciente?</h2>
+            <p>Atención directa y personalizada con el curador de la galería a través de nuestro canal exclusivo de mensajería instantánea.</p>
+            <a href="https://wa.me/5490000000000?text=Hola,%20quiero%20recibir%20el%20catálogo%20privado%20de%20cuadros." class="btn btn-primary btn-large" target="_blank" rel="noopener">
+                Abrir Chat de WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+        <p>&copy; 2026 Ecos Oníricos. Todos los derechos reservados. El arte desafía lo real.</p>
+    </footer>
+
 </body>
 </html>

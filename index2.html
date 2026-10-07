@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onírica | Galería de Arte Surrealista</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        surreal: {
+                            dark: '#05030a',
+                            deep: '#0b0716',
+                            card: '#120c22',
+                            accent: '#9333ea',
+                            gold: '#fbbf24',
+                            glow: 'rgba(147, 51, 234, 0.4)'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts for surrealist and elegant typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for surreal icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+        }
+
+        @keyframes floatFast {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-25px) scale(1.03);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes liquidBorder {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+        }
+
+        .animate-float-slow {
+            animation: floatSlow 7s ease-in-out infinite;
+        }
+
+        .animate-float-fast {
+            animation: floatFast 5s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+
+        .liquid-shape {
+            animation: liquidBorder 10s ease-in-out infinite;
+        }
+
+        /* Glassmorphism custom touch */
+        .glass-panel {
+            background: rgba(18, 12, 34, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(147, 51, 234, 0.15);
+        }
+
+        .glass-card {
+            background: rgba(25, 16, 48, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(147, 51, 234, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #05030a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2e1065;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #581c87;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surreal-dark text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-purple-600 selection:text-white">
+
+    <!-- Botón flotante persistente de WhatsApp -->
+    <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20adquirir%20una%20de%20sus%20obras%20surrealistas."
+        target="_blank" rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white p-4 rounded-full shadow-2xl shadow-emerald-900/50 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+        title="Consultar por WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span
+            class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out text-sm font-semibold tracking-wide pl-0 group-hover:pl-2">Adquirir
+            Obra</span>
+    </a>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-purple-950/30">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#"
+                class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-purple-100 to-amber-200">
+                ONÍRICA
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase font-medium">
+                <a href="#galeria" class="hover:text-purple-400 transition-colors">Exposición</a>
+                <a href="#manifiesto" class="hover:text-purple-400 transition-colors">Manifiesto</a>
+                <a href="#artista" class="hover:text-purple-400 transition-colors">El Artista</a>
+                <a href="https://wa.me/34600000000?text=Hola,%20deseo%20agendar%20una%20visita%20privada%20a%20la%20galería."
+                    target="_blank"
+                    class="px-5 py-2.5 rounded-full border border-purple-500/40 hover:bg-purple-600/20 text-purple-200 transition-all duration-300">
+                    Visita Privada
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Sección Hero Impactante -->
+        <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+            <!-- Fondos lumínicos abstractos con CSS puro -->
+            <div
+                class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none animate-float-slow">
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-purple-300 text-xs tracking-widest uppercase border border-purple-500/30">
+                        <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                        Colección Onírica 2026
+                    </div>
+                    <h1
+                        class="font-serif text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none text-white">
+                        Donde la Realidad <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-amber-200 italic font-normal">Se
+                            Desvanece</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg sm:text-xl font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Explora universos suspendidos en el tiempo y el inconsciente. Cuadros surrealistas pintados al
+                        óleo y acrílico de alta calidad para coleccionistas de lo imposible.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#galeria"
+                            class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-500 hover:to-indigo-600 text-white font-medium tracking-wider shadow-lg shadow-purple-900/50 transition-all duration-300 hover:scale-105 text-center">
+                            Explorar Exposición
+                        </a>
+                        <a href="https://wa.me/34600000000?text=Hola,%20quiero%20recibir%20el%20catálogo%20privado%20de%20obras."
+                            target="_blank"
+                            class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel hover:bg-white/5 text-purple-200 font-medium tracking-wider border border-purple-500/30 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i> Catálogo WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Imagen Hero Surrealista Animada -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-72 h-96 sm:w-80 sm:h-[420px] animate-float-slow">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-purple-600 to-pink-500 liquid-shape blur-xl opacity-40">
+                        </div>
+                        <div
+                            class="relative w-full h-full rounded-2xl overflow-hidden glass-panel border border-purple-500/30 shadow-2xl group">
+                            <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=800"
+                                alt="Obra Surrealista Destacada"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x1000/120c22/9333ea?text=Arte+Surrealista'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-80">
+                            </div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <span class="text-xs tracking-widest text-amber-300 font-semibold uppercase">Obra
+                                    Maestra</span>
+                                <h3 class="font-serif text-xl font-bold text-white mt-1">"El Suspiro del Vacío"</h3>
+                                <p class="text-xs text-gray-300 mt-0.5">Óleo sobre lienzo, 120x90cm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección Galería / Exposición de Cuadros Surrealistas -->
+        <section id="galeria" class="py-24 px-6 relative bg-surreal-deep">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                    <span class="text-purple-400 uppercase tracking-widest text-xs font-bold">Colección
+                        Permanente</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">Exposición Onírica</h2>
+                    <p class="text-gray-400 font-light">Cada cuadro es una ventana a dimensiones paralelas donde las
+                        leyes físicas se disuelven ante la emoción.</p>
+                </div>
+
+                <!-- Cuadrícula de Cuadros -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Cuadro 1 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800"
+                                alt="Metamorfosis Estelar"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Metamorfosis+Estelar'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-amber-300 font-medium">Disponible</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Metamorfosis Estelar</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Técnica mixta sobre madera • 100x80
+                                    cm</p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"Donde los pensamientos se
+                                    convierten en constelaciones antes de tocar tierra."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€2,400</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20la%20obra%20'Metamorfosis%20Estelar'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Reservar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro 2 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800"
+                                alt="El Laberinto del Tiempo Roto"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Laberinto+del+Tiempo'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-amber-300 font-medium">Disponible</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    El Laberinto del Tiempo Roto</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Óleo sobre lienzo • 140x100 cm</p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"Relojes que gotean memorias en
+                                    un desierto sin horizontes definidos."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€3,800</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20la%20obra%20'El%20Laberinto%20del%20Tiempo%20Roto'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Reservar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro 3 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800"
+                                alt="Sinfonía Abisal"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Sinfonia+Abisal'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-purple-300 font-medium">Colección
+                                Privada</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Sinfonía Abisal</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Acrílico y resina • 110x110 cm</p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"Melodías submarinas que
+                                    resuenan en las profundidades del subconsciente."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€2,950</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20deseo%20consultar%20sobre%20la%20obra%20'Sinfonía%20Abisal'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Consultar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro 4 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800"
+                                alt="Umbral de los Suspiros"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Umbral+de+los+Suspiros'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-amber-300 font-medium">Disponible</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Umbral de los Suspiros</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Óleo sobre lienzo • 90x120 cm</p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"Puertas que se abren hacia
+                                    habitaciones hechas de pura nostalgia."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€2,100</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20la%20obra%20'Umbral%20de%20los%20Suspiros'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Reservar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro 5 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800"
+                                alt="Geometría del Alma"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Geometria+del+Alma'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-amber-300 font-medium">Disponible</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Geometría del Alma</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Acrílico sobre lienzo • 130x90 cm
+                                </p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"Líneas imposibles que sostienen
+                                    fragmentos de un cielo desconocido."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€3,200</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20la%20obra%20'Geometría%20del%20Alma'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Reservar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro 6 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=800"
+                                alt="Eclipse Interior"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                onerror="this.src='https://placehold.co/800x800/120c22/9333ea?text=Eclipse+Interior'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surreal-dark via-transparent to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-xs text-amber-300 font-medium">Disponible</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3
+                                    class="font-serif text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Eclipse Interior</h3>
+                                <p class="text-xs text-purple-400 font-medium mt-1">Óleo y hoja de oro • 150x120 cm</p>
+                                <p class="text-gray-400 text-sm mt-3 font-light italic">"El momento exacto en que la
+                                    sombra revela su propia luz."</p>
+                            </div>
+                            <div class="pt-4 border-t border-purple-950/50 flex items-center justify-between">
+                                <span class="font-serif text-lg font-bold text-amber-200">€4,500</span>
+                                <a href="https://wa.me/34600000000?text=Hola,%20estoy%20interesado%20en%20la%20obra%20'Eclipse%20Interior'."
+                                    target="_blank"
+                                    class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2 border border-purple-500/30">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Reservar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Manifiesto & Sobre el Artista (Asimétrica) -->
+        <section id="manifiesto" class="py-24 px-6 relative bg-surreal-dark overflow-hidden">
+            <div
+                class="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-950/20 rounded-full blur-[140px] pointer-events-none">
+            </div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Columna Izquierda: Manifiesto -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-purple-400 uppercase tracking-widest text-xs font-bold">Manifiesto Onírico</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        "El arte no reproduce lo visible, <br>hace <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 italic font-normal">visible
+                            lo invisible</span>."
+                    </h2>
+                    <div class="space-y-4 text-gray-300 font-light leading-relaxed">
+                        <p>
+                            En <strong class="text-white font-medium">Onírica</strong> rechazamos la tiranía de la
+                            lógica cotidiana. Cada cuadro expuesto es el resultado de un descenso al archivo profundo de
+                            los sueños, capturando visiones fugaces que desafían la gravedad, la arquitectura y el
+                            tiempo.
+                        </p>
+                        <p>
+                            Cada pieza es única e irrepetible, creada con pigmentos puros, óleos finos y soportes
+                            artesanales ideados para perdurar siglos. No vendemos meros elementos decorativos; ofrecemos
+                            portales de contemplación profunda para espacios que buscan alma y misterio.
+                        </p>
+                    </div>
+                    <div class="pt-4 flex items-center gap-6">
+                        <div>
+                            <h4 class="font-serif text-3xl font-bold text-amber-200">100%</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Obras Originales</p>
+                        </div>
+                        <div class="w-px h-12 bg-purple-950"></div>
+                        <div>
+                            <h4 class="font-serif text-3xl font-bold text-amber-200">Global</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Certificado de Autenticidad
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: El Artista (Diseño Asimétrico) -->
+                <div id="artista" class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-sm lg:max-w-none">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-tr from-purple-600 to-amber-500 rounded-3xl opacity-20 blur-xl animate-float-slow">
+                        </div>
+                        <div class="glass-panel p-8 rounded-3xl relative border border-purple-500/30 space-y-6">
+                            <div
+                                class="w-24 h-24 rounded-full overflow-hidden border-2 border-purple-400/50 mx-auto shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400"
+                                    alt="Valeria Vane, Artista Surrealista" class="w-full h-full object-cover"
+                                    onerror="this.src='https://placehold.co/400x400/120c22/9333ea?text=Artista'">
+                            </div>
+                            <div class="text-center space-y-2">
+                                <h3 class="font-serif text-2xl font-bold text-white">Valeria Vane</h3>
+                                <p class="text-xs text-purple-300 uppercase tracking-widest font-medium">Maestra Pintora
+                                    Surrealista</p>
+                            </div>
+                            <p class="text-gray-400 text-sm font-light text-center leading-relaxed">
+                                "Mi estudio es un refugio donde la vigilia y el sueño convergen. Pintar es el único acto
+                                donde puedo reordenar el universo a mi antojo."
+                            </p>
+                            <div class="pt-2 text-center">
+                                <a href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20conversar%20directamente%20con%20la%20artista%20Valeria%20Vane."
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-purple-300 hover:text-white uppercase transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Conversar con la
+                                    artista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. Pie de Página Elegante -->
+    <footer class="bg-surreal-deep border-t border-purple-950/40 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center md:text-left">
+            <div>
+                <a href="#"
+                    class="font-serif text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-amber-200">
+                    ONÍRICA
+                </a>
+                <p class="text-gray-400 text-sm font-light mt-2">Galería de Arte Surrealista • Madrid & Internacional
+                </p>
+            </div>
+
+            <div class="flex justify-center space-x-6">
+                <a href="#"
+                    class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-purple-300 hover:text-white hover:border-purple-400 transition-all">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-purple-300 hover:text-white hover:border-purple-400 transition-all">
+                    <i class="fa-brands fa-behance"></i>
+                </a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-purple-300 hover:text-white hover:border-purple-400 transition-all">
+                    <i class="fa-brands fa-pinterest-p"></i>
+                </a>
+            </div>
+
+            <div class="text-center md:text-right">
+                <a href="https://wa.me/34600000000?text=Hola,%20quisiera%20agendar%20una%20reunión%20con%20la%20galería."
+                    target="_blank"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold tracking-wider transition-all">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Contacto Directo WhatsApp
+                </a>
+                <p class="text-xs text-gray-500 mt-3">© 2026 Onírica Galería. Todos los derechos reservados.</p>
+            </div>
+        </div>
+</body>
+
+</html>

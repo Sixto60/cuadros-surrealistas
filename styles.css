@@ -1,0 +1,641 @@
+/* ==========================================
+VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+    --bg-deep: #050508;
+    --bg-card: rgba(18, 18, 28, 0.65);
+    --accent-purple: #8b5cf6;
+    --accent-cyan: #06b6d4;
+    --accent-pink: #ec4899;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================
+FONDO ANIMADO SURREALISTA (PURO CSS)
+   ========================================== */
+.surreal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 30%, #110d24 0%, #050508 80%);
+}
+
+.floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    animation: floatOrbs 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    width: 450px;
+    height: 450px;
+    background: var(--accent-purple);
+    top: -10%;
+    left: -10%;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent-cyan);
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -5s;
+}
+.img-2 {
+    background-image: url('https://wa.me/5490000000000?text=Hola,%20estoy%20interesado%20en%20la%20obra:%20Arquitectura%20Onírica'); /* Cambia esto por la ruta real de tu archivo */
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: var(--accent-pink);
+    top: 40%;
+    left: 60%;
+    animation-delay: -10s;
+}
+
+@keyframes floatOrbs {
+    0% {
+        transform: translateY(0px) translateX(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(40px) translateX(-30px) scale(1.1);
+    }
+
+    100% {
+        transform: translateY(-30px) translateX(40px) scale(0.95);
+    }
+}
+
+/* ==========================================
+BOTÓN FLOTANTE DE WHATSAPP
+   ========================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    animation: pulseWhatsapp 2.5s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: 80px;
+    background-color: rgba(18, 18, 28, 0.9);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes pulseWhatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* ==========================================
+NAVEGACIÓN / HEADER
+   ========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(5, 5, 8, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+    z-index: 900;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 30%, var(--accent-purple));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-cyan);
+}
+
+/* ==========================================
+SECCIÓN HERO
+   ========================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 140px 8% 80px;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+    animation: fadeInSlide 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-subtitle {
+    display: inline-block;
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.15;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.hero-text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    max-width: 550px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.6);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MARCO SURREALISTA HERO */
+.surreal-frame-hero {
+    width: 380px;
+    height: 480px;
+    border-radius: 190px 190px 20px 20px;
+    border: 2px solid var(--border-glass);
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(139, 92, 246, 0.2);
+    animation: floatFrame 6s ease-in-out infinite alternate;
+}
+
+.inner-art {
+    width: 100%;
+    height: 100%;
+    border-radius: 180px 180px 10px 10px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.art-1 {
+    /* Simulación artística de arte surrealista con gradientes y sombras puras */
+    background: linear-gradient(135deg, #2e1065, #0f172a, #4c1d95),
+        radial-gradient(circle at 70% 30%, #ec4899 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+}
+
+.art-1::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, var(--accent-cyan), transparent);
+    border-radius: 50%;
+    top: 25%;
+    left: 30%;
+    filter: blur(15px);
+    mix-blend-mode: overlay;
+}
+
+.surreal-frame-hero:hover .inner-art {
+    transform: scale(1.04) rotate(1deg);
+}
+
+@keyframes floatFrame {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+GALERÍA DE CUADROS
+   ========================================== */
+.gallery-section {
+    padding: 100px 8%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.art-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.art-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+}
+
+.art-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+}
+
+.art-card:hover .art-img {
+    transform: scale(1.08);
+}
+
+/* Fondos abstractos estéticos para las tarjetas simulando cuadros */
+.img-1 {
+    background: linear-gradient(to bottom, #1e1b4b, #31103c),
+        radial-gradient(circle at 30% 70%, #8b5cf6 0%, transparent 70%);
+}
+
+.img-2 {
+    background: linear-gradient(135deg, #065f46, #0f172a, #134e4a),
+        radial-gradient(circle at 80% 20%, #06b6d4 0%, transparent 60%);
+}
+
+.img-3 {
+    background: linear-gradient(220deg, #831843, #1e1b4b),
+        radial-gradient(circle at 50% 50%, #ec4899 0%, transparent 65%);
+}
+
+.art-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 8, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.art-card:hover .art-overlay {
+    opacity: 1;
+}
+
+.overlay-btn {
+    background: #fff;
+    color: var(--bg-deep);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transform: translateY(15px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease;
+}
+
+.art-card:hover .overlay-btn {
+    transform: translateY(0);
+}
+
+.overlay-btn:hover {
+    background: var(--accent-cyan);
+    color: #fff;
+}
+
+.card-info {
+    padding: 25px;
+}
+
+.card-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.art-specs {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 15px;
+}
+
+.art-price {
+    display: inline-block;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+SECCIÓN MANIFIESTO
+   ========================================== */
+.manifesto-section {
+    padding: 100px 8%;
+    background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.03) 50%, transparent);
+}
+
+.manifesto-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 60px 50px;
+    border-radius: 24px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.manifesto-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.manifesto-quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--accent-cyan);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.manifesto-text {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+SECCIÓN DE CONTACTO
+   ========================================== */
+.contact-section {
+    padding: 80px 8% 120px;
+    text-align: center;
+}
+
+.contact-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, rgba(18, 18, 28, 0.8) 70%);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 24px;
+    padding: 60px 40px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-box h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.contact-box p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn-large {
+    display: inline-block;
+    padding: 16px 36px;
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+FOOTER
+   ========================================== */
+.footer {
+    padding: 30px 8%;
+    text-align: center;
+    border-top: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    background: #030305;
+}
+
+/* ==========================================
+DISEÑO RESPONSIVO (MEDIA QUERIES)
+   ========================================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 120px;
+        gap: 40px;
+    }
+
+    .hero-text {
+        margin: 0 auto 35px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .nav-links {
+        display: none;
+        /* Simplificado para evitar JS de menú hamburguesa */
+    }
+}
+
+@media (max-width: 600px) {
+    .manifesto-container {
+        padding: 40px 20px;
+    }
+
+    .contact-box {
+        padding: 40px 20px;
+    }
+
+    .surreal-frame-hero {
+        width: 280px;
+        height: 360px;
+    }
+}
